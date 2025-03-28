@@ -34,6 +34,36 @@ async function fetchProductsAsync() {
 }
 fetchProductsAsync();// call the function to fetch products
 
+//Task 4: Displaying products
+
+function displayProducts(products) {
+    const container = document.getElementById("product-container");
+    container.innerHTML = ""; // Clear previous content
+
+    products.slice(0,5).forEach((product) => {
+        const productElement = document.createElement("div");
+        productElement.classList.add("product");
+
+        productElement.innerHTML = `
+            <h3>${product.fields.name}</h3>
+            <p>Price: $${product.fields.price}</p>
+            <img src="${product.fields.image.url}" alt="${product.fields.name}">
+        `;
+        container.appendChild(productElement);
+    });
+}
+//Task 5: Reusable error handling function
+function handleError(error) {
+    const container = document.getElementById("product-container");
+    container.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+}
+//Task 6: Fetching products with error handling
+fetchProductsAsync()
+fetchProductsThen()
+
+
+
+
 
 
   
