@@ -18,3 +18,22 @@ function fetchProductsThen() {
         });
     }
     fetchProductsThen();// call the function to fetch products                
+
+// Task 3: Fetching products with async/await
+async function fetchProductsAsync() {
+    try {
+        const response = await fetch ("https://www.course-api.com/javascript-store-products");// fetching data from the API
+        if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);// if the response is not ok, throw an error
+        }
+        const products = await response.json();//wait for the response to be converted to JSON
+    } catch (error) {
+        console.error("Error fetching products:", error.message); // log any errors that occur during the fetch
+        handleError(error); // rethrow the error to be handled by the caller
+    }
+}
+fetchProductsAsync();// call the function to fetch products
+
+
+
+  
