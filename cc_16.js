@@ -57,6 +57,9 @@ function handleError(error) {
     const container = document.getElementById("product-container");
     container.innerHTML = `<p class="error">Error: ${error.message}</p>`;
 }
+//Task 6: Fetching products with error handling
+fetchProductsAsync()
+fetchProductsThen()
 
 
 
