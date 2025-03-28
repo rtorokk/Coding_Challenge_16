@@ -12,12 +12,13 @@ function fetchProductsThen() {
             products.forEach((product) => {
                 console.log(product.fields.name); // log the name of each product
             });
+            displayProducts(products); // Display products after fetching
         })
         .catch((error) => {
             console.error("Error fetching products:", error); // log any errors that occur during the fetch
+            handleError(error); // handle the error
         });
-    }
-    fetchProductsThen();// call the function to fetch products                
+    } 
 
 // Task 3: Fetching products with async/await
 async function fetchProductsAsync() {
@@ -27,12 +28,12 @@ async function fetchProductsAsync() {
             throw new Error(`HTTP error: ${response.status}`);// if the response is not ok, throw an error
         }
         const products = await response.json();//wait for the response to be converted to JSON
+        displayProducts(products); // Display products after fetching
     } catch (error) {
         console.error("Error fetching products:", error.message); // log any errors that occur during the fetch
         handleError(error); // rethrow the error to be handled by the caller
     }
 }
-fetchProductsAsync();// call the function to fetch products
 
 //Task 4: Displaying products
 
@@ -47,7 +48,7 @@ function displayProducts(products) {
         productElement.innerHTML = `
             <h3>${product.fields.name}</h3>
             <p>Price: $${product.fields.price}</p>
-            <img src="${product.fields.image.url}" alt="${product.fields.name}">
+            <img src="${product.fields.image[0].url}" alt="${product.fields.name}">
         `;
         container.appendChild(productElement);
     });
@@ -67,4 +68,8 @@ fetchProductsThen()
 
 
 
-  
+
+
+
+
+
